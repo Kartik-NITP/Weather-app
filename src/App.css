@@ -1,38 +1,104 @@
-.App {
+.app{
+  height: 100vh;
+  width: 100vw;
+  padding:30px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75));
+  background-image: url(./image/snow_night.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.search{
+  width: 60%;
+  height:40px;
+  border-radius: 15px;
+  padding:20px;
+  font-size: 20px;
+  margin:0 20vw;
+  border:1px solid rgba(0, 0, 0, 0.2);
+}
+
+.search:focus{
+  outline: none;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+
+
+.location > p{
+  margin-top:20px;
+  font-size: 40px;
+  font-weight: 500;
   text-align: center;
+  color:#FFF;
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 3px 6px rgba(0,0,0,0.2);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.temp-weather{
+  background-color: rgba(255,255,255,0.2);
+  width:300px;
+  margin:0 auto;
+  padding: 20px;
+  border-radius: 20px;
+  margin-top: 40px;
+  transition: 0.4s ease-in;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.temp-weather:hover{
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.temp{
+  color: #FFF;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 auto;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+.temp > .temp-value{
+  font-size: 60px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0,0,0,0.2);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.fa-dot-circle{
+  font-size: 10px;
+}
+
+.temp > .celsius{
+  font-size: 20px;
+}
+
+.weather{
+  display: flex;
+  justify-content: center;
+  margin:0 auto;
+}
+
+.weather > P{
+  align-self: center;
+  font-size: 26px;
+  margin-right: 10px;
+  color: #FFF;
+  text-shadow: 3px 6px rgba(0,0,0,0.2);
+}
+
+.error{
+  font-size:30px;
+  color:#FFF;
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+@media only screen and (max-width:500px){
+  .search{
+    font-size: 18px;
   }
 }

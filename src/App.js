@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import './App.css';
-const api = {
-  key: '30ac7ef920b706385a540a75c471c15d',
-  base: 'https://api.openweathermap.org/data/2.5/'
-}
+const key = process.env.REACT_APP_KEY;
+const base = process.env.REACT_APP_BASE;
+
+
 
 function App() {
   const [query , setQuery] = useState('');
@@ -11,7 +11,7 @@ function App() {
   const search = evt => {
     if (evt.key === 'Enter')
     {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${base}weather?q=${query}&units=metric&APPID=${key}`)
         .then(res => res.json())
         .then(result => {
           setWeather(result);
@@ -21,38 +21,45 @@ function App() {
     }
 
   }
-  const dateBuilder = (d) => {
-    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    let day = days[d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()];
-    let year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`
-  }
+  
   return (
-    <div className='App'>
-    <div className={(typeof weather.main != "undefined")}>
-      <main>
-        <div className='search-box'>
-          <input type='text' className='search-bar' placeholder='Enter the Place..' onChange={e => setQuery(e.target.value)}
-            value={query}
-            onKeyPress={search} />
-</div>
-{(typeof weather.main != 'undefined') ? (
-  <div>
-        <div className='location'>{weather.name} {weather.sys.country}</div>
-        <div className='date'>{dateBuilder(new Date())}</div>
-        <div className='weather'>
-          <div className='temp'>{Math.round(weather.main.temp)}°c</div>
-        </div>
-        </div>
-) :('')}
-      </main>
+    <div className='app'>
       
+        <input
+          type="text"
+          placeholder="Search Location"
+          className="search"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          onKeyPress={search}
+        />
+      
+    <>
+    {(typeof weather.main != 'undefined') ? (
+    <>
+    {/* Every things will come here*/}
+    <div className="location">
+      <p>{weather.name}, {weather.sys.country}</p>
     </div>
+    <div className="temp-weather">
+    <div className="temp">
+      <div className="temp-value">{Math.round(weather.main.temp)}</div>
+      <i className="fas fa-dot-circle"></i>
+      <div className="celsius">C</div>
+    </div>
+    <div className="weather">
+      <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
+      <p>{weather.weather[0].main} {weather.weather[0].icon[2] === 'n' ? (<>Night</>):(<>Day</>) }</p>
+    </div>
+    
+    </div>
+    
+    </>):(<div className="error">
+    {weather.message}
+    </div>)}
+
+    </>
+    
     </div>
   );
 }
