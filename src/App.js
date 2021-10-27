@@ -48,7 +48,7 @@ function App() {
       <div className="celsius">C</div>
     </div>
     <div className="weather">
-      <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} />
+      <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather-icon" />
       <p>{weather.weather[0].main} {weather.weather[0].icon[2] === 'n' ? (<>Night</>):(<>Day</>) }</p>
     </div>
     
