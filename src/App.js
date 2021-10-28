@@ -14,7 +14,7 @@ function App() {
   const search = async evt => {
     if (evt.key === 'Enter')
     {
-      await axios.get(`${base}weather?q=${query}&units=metric&APPID=${key}`
+      await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${key}`
       ).then((res) => {setWeather(res.data);setQuery('');} 
       ).catch((err) => {setWeather({});setQuery('');setError("location not found")}); 
       
