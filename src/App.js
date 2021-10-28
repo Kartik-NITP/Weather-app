@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import axios from "axios"
 const key = process.env.REACT_APP_KEY;
-const base = process.env.REACT_APP_BASE;
+
 
 
 
